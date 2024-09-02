@@ -1,0 +1,73 @@
+#CUDA_VISIBLE_DEVICES=0 python test.py -opt ./options/test/COISR_x4.yml
+# general settings
+name: COISR_x4
+model_type: ODISRModel
+scale: 4
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+# test dataset settings
+datasets:
+  test_1:  # the 1st test dataset
+    name: odisr_test
+    type: COIPairedImageDataset
+    dataroot_gt: /COISR/datasets/COCP-SR/test/HR
+    dataroot_lq: /COISR/datasets/COCP-SR/test/LR/X4
+    io_backend:
+      type: disk
+    condition_type: X4
+
+# network structures
+network_g:
+  type: COISR
+  upscale: 4
+  in_chans: 3
+  img_size: 64
+  window_size: 8
+  img_range: 1.
+  depths: [6, 6, 6, 6, 6, 6]
+  embed_dim: 180
+  c_dim: 256
+  num_heads: [6, 6, 6, 6, 6, 6]
+  mlp_ratio: 2
+  upsampler: 'pixelshuffle'
+  condition_dim: 2
+  vit_condition: [6, 6, 6, 6, 6, 6]
+  vit_condition_type: '3conv'
+  window_condition: true
+  dcn_condition: [1, 1, 1, 1, 1, 1, 1]
+  dcn_condition_type: '2conv'
+
+
+# path
+path:
+  pretrain_network_g: /COISR/pretrained_models/COISR_X4.pth
+  param_key_g: params
+  strict_load_g: true
+
+# validation settings
+val:
+  save_img: true
+  suffix: ~  # add suffix to saved images, if None, use exp name
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 0
+      test_y_channel: false
+      better: higher  # the higher, the better. Default: higher
+    ssim:
+      type: calculate_ssim
+      crop_border: 0
+      test_y_channel: false
+      better: higher
+    ws-psnr:
+      type: calculate_psnr_ws
+      crop_border: 0
+      test_y_channel: false
+      better: higher
+    ws-ssim:
+      type: calculate_ssim_ws
+      crop_border: 0
+      test_y_channel: false
+      better: higher

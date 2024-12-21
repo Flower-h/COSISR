@@ -866,7 +866,7 @@ class UpsampleOneStep(nn.Sequential):
 
 
 @ARCH_REGISTRY.register()
-class COISR(nn.Module):
+class COSISR(nn.Module):
     r"""
     Args:
         img_size (int | tuple(int)): Input image size. Default 64
@@ -892,8 +892,8 @@ class COISR(nn.Module):
         resi_connection: The convolutional block before residual connection. '1conv'/'3conv'
         condition_dim (int): The dimension of input conditions
         c_dim (int): The dimension of condition-related hidden layers
-        vit_condition (list): whether to apply DMAB. Default: None
-        dcn_condition (list): whether to apply DDCB. Default: None
+        vit_condition (list): whether to apply DMCB. Default: None
+        dcn_condition (list): whether to apply MFFB. Default: None
     """
 
     def __init__(self,
@@ -927,7 +927,7 @@ class COISR(nn.Module):
                  window_condition_only=False,
                  c_dim=60,
                  **kwargs):
-        super(COISR, self).__init__()
+        super(COSISR, self).__init__()
         num_in_ch = in_chans
         num_out_ch = in_chans
         num_feat = 64
@@ -1186,7 +1186,7 @@ if __name__ == '__main__':
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # full model
-    model = COISR(
+    model = COSISR(
         upscale=4,
         img_size=(64, 64),
         window_size=8,

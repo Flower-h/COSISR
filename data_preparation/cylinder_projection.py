@@ -32,8 +32,8 @@ Args：
     map_table_R_4: Coordinate mapping table from 4x down sampled image to cylindrical unfolded image projection.
 '''
 
-COCP_path = 'COISR/datasets/COCP-SR/'
-SIM_path = 'COISR/datasets/SIM-SR/'
+COCP_path = 'COSISR/datasets/COCP-SR/'
+SIM_path = 'COSISR/datasets/SIM-SR/'
 
 a = 0.4308
 b = 0.2303

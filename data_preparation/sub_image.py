@@ -30,8 +30,8 @@ def main():
         subimages.
         Remember to modify opt configurations according to your settings.
     """
-    COCP_path = 'COISR/datasets/COCP-SR/train/'
-    SIM_path = 'COISR/datasets/SIM-SR/train/'
+    COCP_path = 'COSISR/datasets/COCP-SR/train/'
+    SIM_path = 'COSISR/datasets/SIM-SR/train/'
     opt = {}
     opt['n_thread'] = 20
     opt['compression_level'] = 3

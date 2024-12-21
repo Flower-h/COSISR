@@ -4,7 +4,7 @@ import cv2
 from tqdm import tqdm
 from multiprocessing import Pool
 
-input_path = 'COISR/datasets/data'
+input_path = 'COSISR/datasets/data'
 def main():
     '''
     input_path: Path to the input image
@@ -12,9 +12,9 @@ def main():
     test_path: Path to the test set image
     val_path: Path to the validation set image
     '''
-    train_path = 'COISR/datasets/COCP-SR/train/Catadioptric'
-    test_path = 'COISR/datasets/COCP-SR/test/Catadioptric'
-    val_path = 'COISR/datasets/COCP-SR/validation/Catadioptric'
+    train_path = 'COSISR/datasets/COCP-SR/train/Catadioptric'
+    test_path = 'COSISR/datasets/COCP-SR/test/Catadioptric'
+    val_path = 'COSISR/datasets/COCP-SR/validation/Catadioptric'
     os.makedirs(train_path, exist_ok=True)
     os.makedirs(test_path, exist_ok=True)
     os.makedirs(val_path, exist_ok=True)

@@ -64,13 +64,13 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node
 ## Testing 
 Pretrained models can be downloaded [here](https://drive.google.com/drive/folders/1xd-xbRPwDeLVOq7qunlgIOxIJeJByfoi?usp=sharing).
 
-1. Testing of Standard Training
+1. Testing of Standard Training. The results are displayed in the file fig/X2 and fig/X4
 ```bash
 ln -s YOUR_PRETRAIN_MODEL_PATH pretrained_models
 CUDA_VISIBLE_DEVICES=0 python test.py -opt ./options/test/*.yml
 ```
 
-2. Testing of Correction Training
+2. Testing of Correction Training. The results are displayed in the file fig/COSISR_X2_sim and fig/COSISR_X4_sim
 ```bash
 ln -s YOUR_PRETRAIN_MODEL_PATH pretrained_models
 CUDA_VISIBLE_DEVICES=0 python test.py -opt ./options/test/*_sim.yml

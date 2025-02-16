@@ -20,24 +20,40 @@ Due to the unique circular structure of catadioptric ODIs, feature learning for 
 
 ### Cylindrical Projection Model
 >Due to the unstructured nature of the data in catadioptric ODIs, the learning process of deep learning networks is hindered. By analyzing the imaging process of the catadioptric camera and applying the principle of reversible light paths, we propose using cylindrical projection to unfold the catadioptric omnidirectional image, and the resulting cylindrical unfolded image has a similar structure to the conventional image, which is used as the learning object of the SR network. We provide the complete implementation code for cylindrical projection and downsampling in the file data_preparation.
+<p align="center">
+  <img width="600" src="fig/fig1.png">
+</p>
 
 ### Datasets for Segmented Training
 We generated two datasets: Projection Image Dataset (COCP-SR) and Simulation Dataset (SIM-SR).
 >The structural characteristics of catadioptric ODIs result in significant stretching of the image near the inner ring during the projection process. As a result, both HR and LR images in the projection image dataset exhibit projection distortions that vary with latitude. Therefore, training solely on the projection image dataset is insufficient to correct these distortions. 
+<p align="center">
+  <img width="600" src="fig/fig4.png">
+</p>
 
 >Since the projection model represents the inverse of the imaging process, plain images can be used in place of HR images. By applying inverse projection, corresponding catadioptric ODIs and LR images can be generated. The resulting simulated dataset, which contains undistorted HR images, not only facilitates training for projection distortion correction but also overcomes the limitations of insufficient information in catadioptric ODIs. 
-
+<p align="center">
+  <img width="600" src="fig/fig5.png">
+</p>
 
 ### COSISR
 >We propose the first single image super-resolution network for catadioptric omnidirectional images (COSISR). To address the multi-dimensional distortion characteristics of catadioptric images that vary with latitude, we integrated a distortion map learning mechanism into our network architecture. Specifically, COSISR incorporates a dedicated Distortion Feature Extraction Block (DFEB), which learns multidimensional distortion features from distorted maps. Additionally, to capture distortion features that vary with latitude, COSISR introduces two latitude-adaptive feature extraction modules: the Distortion Multi-head Cross-attention Block (DMCB) and the Multi-level Feature Fusion Block (MFFB). The DMCB employs a cross-attention mechanism to learn the correspondence between multidimensional distortions and geometric features in the cylindrical projected images. MFFB employs multi-group mechanism to achieve the fusion and filtering of multi-level features. Experimental results show that, owing to the synergistic contributions of each component within the framework for catadioptric ODISR, COSISR outperforms existing image SR algorithms, achieving state-of-the-art performance.
-
+<p align="center">
+  <img width="600" src="fig/fig6.png">
+</p>
 
 ### Segmented training strategy
 We divide the training of the SR network into two stages: 
 
 >first, the projection dataset COCP-SR is used for standard training to learn basic image features.
+<p align="center">
+  <img width="600" src="fig/fig8.png">
+</p>
 
 >second, the simulation dataset SIM-SR is employed for corrective training to learn projection distortion features and restore missing image details.
+<p align="center">
+  <img width="600" src="fig/fig9.png">
+</p>
 
 ---
 

@@ -1,5 +1,5 @@
 # (The Visual Computer) Adaptive Super-Resolution Framework for Catadioptric Omnidirectional Images via Cylindrical Projection and Latitude-Aware Networks
-Jiaxu Zhang, Yaowen Lv
+Jiaxu Zhang, Yaowen Lv, Yuxuan Wang, Xu Zhu, Yiming Hu
 
 >Changchun university of science and technology
 

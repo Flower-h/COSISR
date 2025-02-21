@@ -55,6 +55,13 @@ We divide the training of the SR network into two stages:
   <img width="600" src="fig/fig9.png">
 </p>
 
+### Real scene
+To further validate the effectiveness of our method, we captured a set of real scene images and tested the reconstruction performance of our method in real-world environments.
+>On the left is the original image captured by the camera, in the middle is the HR image after cylindrical projection, and on the right is the image reconstructed by COSISR. It can be seen that the COSISR network trained in segments can reconstruct images with better results than HR images, which also confirms that using the SIM-SR dataset for correction training can greatly enhance the reconstruction effect of catadioptric omnidirectional images.
+<p align="center">
+  <img width="600" src="fig/fig10.png">
+</p>
+
 ---
 
 ## Environment
